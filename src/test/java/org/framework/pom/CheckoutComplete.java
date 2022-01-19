@@ -3,7 +3,7 @@ package org.framework.pom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutComplete {
+public class CheckoutComplete extends PageWithHeaderAndFooter {
     WebDriver driver;
     private By back = new By.ById("back-to-products");
 
