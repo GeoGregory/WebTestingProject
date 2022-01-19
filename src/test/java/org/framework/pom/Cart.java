@@ -8,7 +8,6 @@ import test.java.org.framework.pom.exceptions.IdNotFoundException;
 import java.util.List;
 
 public class Cart extends PageWithHeaderAndFooter {
-    WebDriver driver;
 
     private static final By checkoutButton = new By.ById("checkout");
     private static final By continueShoppingButton = new By.ById("continue-shopping");
