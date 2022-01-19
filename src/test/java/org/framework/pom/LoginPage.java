@@ -60,8 +60,8 @@ public class LoginPage extends Page {
         return new Products(driver);
     }
 
-    public void getErrorMessage() {
-        driver.findElement(errorMessageContainer).getText();
+    public String getErrorMessage() {
+        return driver.findElement(errorMessageContainer).getText();
     }
 
     private Page getPage() {
