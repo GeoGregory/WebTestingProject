@@ -1,12 +1,10 @@
 package test.java.org.framework.pom;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 
 public class Product extends PageWithHeaderAndFooter{
 
-    private WebDriver driver;
     private final By productName = new By.ByClassName("inventory_details_name large_size");
     private final By productImage = new By.ByClassName("inventory_details_img");
     private final By productDescription = new By.ByClassName("inventory_details_desc large_size");
@@ -19,13 +17,12 @@ public class Product extends PageWithHeaderAndFooter{
     private String sProductDescription;
     private String sProductPrice;
 
-    public Product(WebDriver webDriver) {
-        super(webDriver);
-        this.driver = webDriver;
-        sProductName = driver.findElement(productName).getText();
-        sProductImage = driver.findElement(productImage).getAttribute("alt");
-        sProductDescription = driver.findElement(productDescription).getText();
-        sProductPrice = driver.findElement(productPrice).getText();
+    public Product(WebDriver driver) {
+        super(driver);
+//        sProductName = driver.findElement(productName).getText();
+//        sProductImage = driver.findElement(productImage).getAttribute("alt");
+//        sProductDescription = driver.findElement(productDescription).getText();
+//        sProductPrice = driver.findElement(productPrice).getText();
     }
 
     public String getsProductName() {

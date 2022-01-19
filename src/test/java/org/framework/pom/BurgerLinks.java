@@ -1,3 +1,5 @@
+package test.java.org.framework.pom;
+
 public enum BurgerLinks {
     ALL_ITEMS("ALL_ITEMS"),
     ABOUT("ABOUT"),
