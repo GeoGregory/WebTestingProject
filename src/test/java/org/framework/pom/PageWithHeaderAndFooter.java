@@ -6,10 +6,12 @@ import org.openqa.selenium.WebDriver;
 public abstract class PageWithHeaderAndFooter extends Page{
 
     protected By cart;
+    protected By cartCount;
 
     public PageWithHeaderAndFooter(WebDriver driver) {
         super(driver);
         cart = new By.ByClassName("shopping_cart_link");
+        cartCount = new By.ByClassName("shopping_cart_count");
     }
 
     public String getTwitter(){
@@ -27,6 +29,10 @@ public abstract class PageWithHeaderAndFooter extends Page{
     public Cart goToCart() {
         driver.findElement(cart).click();
         return new Cart(driver);
+    }
+
+    public int getCartCount(){
+        return Integer.parseInt(driver.findElement(cartCount).getText());
     }
 
     public Page goToBurgerLink(BurgerLinks burgerLink){
