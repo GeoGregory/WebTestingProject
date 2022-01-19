@@ -1,3 +1,5 @@
+package test.java.org.framework.Enums;
+
 public enum UserOptions {
 
     STANDARD("standard_user"),
