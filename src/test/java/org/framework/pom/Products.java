@@ -3,6 +3,7 @@ package test.java.org.framework.pom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import test.java.org.framework.pom.Enums.SortOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,4 +53,24 @@ public class Products extends PageWithHeaderAndFooter {
         return products.get(index).findElement(className);
     }
 
+    public void sortBy(SortOptions sortOptions) {
+        driver.findElement(By.className("product_sort_container")).click();
+
+        switch(sortOptions) {
+            case A_TO_Z:
+                driver.findElement(By.xpath("//option[@value='az']")).click();
+
+            case Z_TO_A:
+                driver.findElement(By.xpath("//option[@value='za']")).click();
+
+            case LOW_TO_HIGH:
+                driver.findElement(By.xpath("//option[@value='lohi']")).click();
+
+            case HIGH_TO_LOW:
+                driver.findElement(By.xpath("//option[@value='hilo']")).click();
+
+            default:
+                driver.findElement(By.xpath("//option[@value='az']")).click();
+        }
+    }
 }
