@@ -6,6 +6,7 @@ import org.framework.pom.*;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import test.java.org.framework.pom.Enums.UserOptions;
 
 public class checkoutCompleteStepDefs {
 
@@ -22,7 +23,7 @@ public class checkoutCompleteStepDefs {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         loginPage = new LoginPage(driver);
-        products = loginPage.quickLogin();
+        products = loginPage.quickLogin(UserOptions.STANDARD);
         cart = products.goToCart();
         yourInfo = cart.goToCheckout();
         yourInfo.setTextField(CheckoutYourInfo.TextFields.FIRSTNAME, "A");
