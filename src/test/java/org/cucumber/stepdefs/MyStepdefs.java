@@ -1,5 +1,6 @@
 package org.cucumber.stepdefs;
 
+import java.util.function.BooleanSupplier;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -18,6 +19,7 @@ public class MyStepdefs {
     private LoginPage loginPage;
     private String username;
     private String password;
+    private long duration;
 
     @Before
     public void setup(){
@@ -110,5 +112,39 @@ public class MyStepdefs {
     @Then("an error should be displayed letting me know I am locked out")
     public void anErrorShouldBeDisplayedLettingMeKnowIAmLockedOut() {
         Assertions.assertEquals("Epic sadface: Sorry, this user has been locked out.", loginPage.getErrorMessage());
+    }
+
+    @When("I try to log in")
+    public void iTryToLogIn() {
+        iTypeBothIn();
+        pressEnter();
+    }
+
+    @Given("I have a performance glitched username and password")
+    public void iHaveAPerformanceGlitchedUsernameAndPassword() {
+        username = UserOptions.PERFORMANCE.getUserOption();
+        password = "secret_sauce";
+    }
+
+    @When("I time my log in")
+    public void iTimeMyLogIn() {
+        long startTime = System.nanoTime();
+        iTypeBothIn();
+        pressEnter();
+        long endTime = System.nanoTime();
+
+        duration = (endTime - startTime);
+    }
+
+    @Then("it should take longer than a normal login")
+    public void itShouldTakeLongerThanANormalLogin() {
+        long glitchedDuration = duration;
+        loginPage = new LoginPage(driver);
+        iHaveAValidUsernameAndPassword();
+        iTimeMyLogIn();
+        long standardDuration = duration;
+        long bufferTime = 1000000000L;
+        BooleanSupplier booleanSupplier = () -> glitchedDuration > (standardDuration + bufferTime);
+        Assertions.assertTrue(booleanSupplier);
     }
 }
