@@ -1,4 +1,4 @@
-package test.java.org.framework.pom;
+package org.framework.pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,9 +9,12 @@ public class IndividualProduct extends PageWithHeaderAndFooter{
     private final By productImage = new By.ByClassName("inventory_details_img");
     private final By productDescription = new By.ByClassName("inventory_details_desc large_size");
     private final By productPrice = new By.ByClassName("inventory_details_price");
-    private final By addToCartButton = new By.ById("add-to-cart-sauce-labs-backpack");
-    private final By removeToCartButton = new By.ById("remove-sauce-labs-backpack");
+    //private final By addToCartButton = new By.ById("add-to-cart-sauce-labs-backpack");
+    //private final By removeToCartButton = new By.ById("remove-sauce-labs-backpack");
+    private final By addToCartButton = new By.ByClassName("btn btn_primary btn_small btn_inventory");
+    private final By removeToCartButton = new By.ByClassName("btn btn_secondary btn_small btn_inventory");
     private final By backToProductsButton = new By.ById("back-to-products");
+    private int originalCartCount = 0;
 
     public IndividualProduct(WebDriver driver) {
         super(driver);
@@ -38,8 +41,8 @@ public class IndividualProduct extends PageWithHeaderAndFooter{
         driver.findElement(backToProductsButton).click();
     }
 
-    public void toggleAddOrRemoveToCart() {
-        int originalCartCount = getCartCount();
+    public void toggleSingleProductAddOrRemoveToCart() {
+        originalCartCount = getCartCount();
         if(driver.findElement(addToCartButton).isEnabled()) {
             driver.findElement(removeToCartButton).click();
             //decrement the counter on cart to the cart icon
@@ -47,14 +50,9 @@ public class IndividualProduct extends PageWithHeaderAndFooter{
             driver.findElement(addToCartButton).click();
             //increment counter on the cart to the cart icon
         }
+    }
 
-        if (originalCartCount != getCartCount()) {
-            //cart count has successfully updated
-            System.out.println("Success");
-        } else {
-            //cart count has not updated. Display error message.
-            System.out.println("Fail cart count not updated");
-        }
-
+    public int getOriginalCartCount() {
+        return originalCartCount;
     }
 }
