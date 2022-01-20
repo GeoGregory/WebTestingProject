@@ -1,13 +1,30 @@
 package org.cucumber.stepdefs;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.framework.pom.Enums.UserOptions;
+import org.framework.pom.LoginPage;
+import org.framework.pom.POMUtils;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-public class LoginStepdefs {
+public class MyStepdefs {
+    private WebDriver driver;
+    private LoginPage loginPage;
     private String username;
     private String password;
+
+
+    @Before
+    public void setup(){
+        System.out.println("setup");
+        POMUtils.setDriverLocation("src/test/resources/chromedriver.exe");
+        driver = new ChromeDriver();
+        loginPage = new LoginPage(driver);
+    }
 
     @Given("I have a valid username and password")
     public void iHaveAValidUsernameAndPassword() {
@@ -17,14 +34,19 @@ public class LoginStepdefs {
 
     @When("I type both in and press login")
     public void iTypeBothInAndPressLogin() {
+       loginPage.inputLoginFields(username, password);
+       loginPage.clickLoginButton();
     }
 
     @Then("I should be logged in and moved to the main page")
     public void iShouldBeLoggedInAndMovedToTheMainPage() {
+        Assertions.assertEquals("https://www.saucedemo.com/inventory.html", driver.getCurrentUrl());
     }
 
     @When("I type both in and press enter")
     public void iTypeBothInAndPressEnter() {
+        loginPage.inputLoginFields(username, password);
+        loginPage.pressEnter();
     }
 
     @Given("that my username or password are invalid")

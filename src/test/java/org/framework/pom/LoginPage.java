@@ -73,6 +73,7 @@ public class LoginPage extends Page {
     }
 
     private boolean loginHasHappened() {
+        driver.
         List<WebElement> loginButtonList = driver.findElements(loginButton);
         return loginButtonList.size() != 0;
     }
