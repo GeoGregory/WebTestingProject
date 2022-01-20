@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.framework.pom.Cart;
+import org.framework.pom.Enums.UserOptions;
 import org.framework.pom.LoginPage;
 import org.framework.pom.Products;
 import org.junit.jupiter.api.Assertions;
@@ -23,7 +24,7 @@ public class cartStepDefs {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         loginPage = new LoginPage(driver);
-        products = loginPage.quickLogin();
+        products = loginPage.quickLogin(UserOptions.STANDARD);
         products.toggleAddOrRemoveToCart(products.getAddBackpackButton(), products.getRemoveBackpackButton());
         cart = products.goToCart();
     }

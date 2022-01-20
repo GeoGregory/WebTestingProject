@@ -1,4 +1,4 @@
-package test.java.org.cucumber;
+package org.cucumber;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

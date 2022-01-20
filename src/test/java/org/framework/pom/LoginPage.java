@@ -1,12 +1,13 @@
 package org.framework.pom;
 
+import org.framework.pom.Enums.UserOptions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import test.java.org.framework.Enums.UserOptions;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class LoginPage extends Page {
     private final By usernameField = new By.ById("user-name");
@@ -33,6 +34,11 @@ public class LoginPage extends Page {
         return getPage();
     }
 
+    public Page pressEnter() {
+        driver.findElement(passwordField).sendKeys(Keys.ENTER);
+        return getPage();
+    }
+
     public void clickErrorCloseButton() {
         driver.findElement(errorMessageCloseButton).click();
     }
@@ -54,21 +60,26 @@ public class LoginPage extends Page {
         return getPage();
     }
 
-    public Products quickLogin() {
-        inputLoginFields(UserOptions.STANDARD.getUserOption(), "secret_sauce");
+    public Products quickLogin(UserOptions usernameInput) {
+        inputLoginFields(usernameInput.getUserOption(), "secret_sauce");
         clickLoginButton();
         return new Products(driver);
     }
 
     public String getErrorMessage() {
-        return driver.findElement(errorMessageContainer).getText();
+        List<WebElement> errorMessageList = driver.findElements(errorMessageContainer);
+        if (errorMessageList.size() != 0){
+            return driver.findElement(errorMessageContainer).getText();
+        } else {
+            return "";
+        }
     }
 
     private Page getPage() {
         if (loginHasHappened()){
             return new Products(driver);
         } else {
-            return new LoginPage(driver);
+            return this;
         }
     }
 
