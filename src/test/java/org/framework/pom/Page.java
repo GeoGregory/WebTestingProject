@@ -1,8 +1,9 @@
-package test.java.org.framework.pom;
+package org.framework.pom;
 
 import org.openqa.selenium.WebDriver;
 
 public class Page {
+
     protected WebDriver driver;
 
     public Page(WebDriver driver) {

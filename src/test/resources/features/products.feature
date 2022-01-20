@@ -12,11 +12,11 @@ Feature: As a user, I want to be able to view products and add or remove product
 
   Scenario: As a user, I want to be able to add an item to my cart
     Given that I am on the product page
-    When I click on the add to cart button
-    Then the cart icon is incremented and the button for that product changes to remove
+    When I click on the add to cart button for the single product
+    Then the cart icon is incremented and the button for that product changes to remove from the product page
 
   Scenario Outline: : As a user, I want to be able to sort the products by one of the <sortingMethods>.
-    Given I am on the products page
+    Given that I am on the products page
     When I sort by <sortingMethods>
     Then The products are ordered correctly
     Examples:
@@ -26,6 +26,6 @@ Feature: As a user, I want to be able to view products and add or remove product
       | Price Des |
 
   Scenario: As a user, I want to inspect each product on its own page
-    Given I am on the products page
+    Given that I am on the products page
     When I click on a specific product
     Then I should go to {product page}
