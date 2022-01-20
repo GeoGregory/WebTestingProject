@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class LoginPage extends Page {
     private final By usernameField = new By.ById("user-name");
@@ -78,8 +79,7 @@ public class LoginPage extends Page {
     }
 
     private boolean loginHasHappened() {
-        driver.
         List<WebElement> loginButtonList = driver.findElements(loginButton);
-        return loginButtonList.size() != 0;
+        return loginButtonList.size() == 0;
     }
 }
