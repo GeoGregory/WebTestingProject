@@ -3,10 +3,10 @@ package org.cucumber.stepDefs;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.framework.pom.*;
+import org.framework.pom.Enums.UserOptions;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import test.java.org.framework.pom.Enums.UserOptions;
 
 public class checkoutCompleteStepDefs {
 
