@@ -28,7 +28,7 @@ public class CheckoutOverview extends PageWithHeaderAndFooter{
         return new Products(driver);
     }
 
-    public List<WebElement> getAllProducts() {
+    public List<WebElement> getCartItems() {
         return driver.findElements(cartItems);
     }
 
