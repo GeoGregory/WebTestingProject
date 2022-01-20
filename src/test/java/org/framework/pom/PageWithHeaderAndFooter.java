@@ -2,10 +2,10 @@ package org.framework.pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
 import test.java.org.framework.pom.Enums.BurgerLinks;
 
-public abstract class PageWithHeaderAndFooter extends Page{
+
+public class PageWithHeaderAndFooter extends Page{
 
     protected By cart;
     protected By cartCount;
