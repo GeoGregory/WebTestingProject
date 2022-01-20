@@ -5,9 +5,9 @@ Feature: As a user I want to be able to login
     When I type both in and press login
     Then I should be logged in and moved to the main page
 
-#    Given I have a valid username and password
-#    When I type both in and press enter
-#    Then I should be logged in and moved to the main page
+    Given I have a valid username and password
+    When I type both in and press enter
+    Then I should be logged in and moved to the main page
 
   Scenario: Triggering errors
     Given that my username or password are invalid
