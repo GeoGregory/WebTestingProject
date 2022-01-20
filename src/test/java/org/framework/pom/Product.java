@@ -1,10 +1,11 @@
 package org.framework.pom;
 
+import org.framework.pom.PageWithHeaderAndFooter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 
-public class Product extends PageWithHeaderAndFooter{
+public class Product extends PageWithHeaderAndFooter {
 
     private WebDriver driver;
     private final By productName = new By.ByClassName("inventory_details_name large_size");
@@ -66,7 +67,6 @@ public class Product extends PageWithHeaderAndFooter{
             //cart count has not updated. Display error message.
             System.out.println("Fail cart count not updated");
         }
-
     }
 
 }

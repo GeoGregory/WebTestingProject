@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import test.java.org.framework.pom.Enums.BurgerLinks;
 
+
 public class PageWithHeaderAndFooter extends Page{
 
     protected By cart;
@@ -12,7 +13,7 @@ public class PageWithHeaderAndFooter extends Page{
     public PageWithHeaderAndFooter(WebDriver driver) {
         super(driver);
         cart = new By.ByClassName("shopping_cart_link");
-        cartCount = new By.ByClassName("shopping_cart_count");
+        cartCount = new By.ByClassName("shopping_cart_badge");
     }
 
     public String getTwitter(){
