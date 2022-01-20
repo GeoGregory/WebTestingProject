@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class MyStepdefs {
+public class LoginStepDefs {
     private WebDriver driver;
     private LoginPage loginPage;
     private String username;
