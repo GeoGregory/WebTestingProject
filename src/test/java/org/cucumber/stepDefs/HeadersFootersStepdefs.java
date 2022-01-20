@@ -1,12 +1,12 @@
-package org.cucumber.stepDefs;
+package test.java.org.cucumber.stepDefs;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.framework.pom.LoginPage;
-import org.framework.pom.Products;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import test.java.org.framework.pom.LoginPage;
+import test.java.org.framework.pom.Products;
 
 public class HeadersFootersStepdefs {
 

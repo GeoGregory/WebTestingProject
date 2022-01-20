@@ -36,6 +36,8 @@ public class CheckoutOverview extends PageWithHeaderAndFooter{
         return driver.findElement(subTotal).getText();
     }
 
+
+
     public String getTax(){
         return driver.findElement(tax).getText();
     }
