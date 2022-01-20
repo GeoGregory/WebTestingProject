@@ -1,0 +1,40 @@
+package org.cucumber.stepDefs;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
+import org.framework.pom.*;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class checkoutCompleteStepDefs {
+
+    private WebDriver driver;
+    private LoginPage loginPage;
+    private Products products;
+    private Cart cart;
+    private CheckoutYourInfo yourInfo;
+    private CheckoutOverview overview;
+    private CheckoutComplete finish;
+
+    @Given("I am on the checkout complete page after a purchase")
+    public void iAmOnTheCheckoutCompletePageAfterAPurchase() {
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        driver = new ChromeDriver();
+        loginPage = new LoginPage(driver);
+        products = loginPage.quickLogin();
+        cart = products.goToCart();
+        yourInfo = cart.goToCheckout();
+        yourInfo.setTextField(CheckoutYourInfo.TextFields.FIRSTNAME, "A");
+        yourInfo.setTextField(CheckoutYourInfo.TextFields.LASTNAME, "A");
+        yourInfo.setTextField(CheckoutYourInfo.TextFields.ZIPPOSTALCODE, "A");
+        overview = yourInfo.goToCheckoutOverview();
+        finish = overview.goToFinish();
+    }
+
+    @When("I click the BACK HOME button")
+    public void iClickTheBACKHOMEButton() {
+        products = finish.goToPastPage();
+        Assertions.assertEquals("https://www.saucedemo.com/inventory.html", products.getURL());
+    }
+}
