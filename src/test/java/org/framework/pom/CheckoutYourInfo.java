@@ -27,7 +27,7 @@ public class CheckoutYourInfo extends PageWithHeaderAndFooter{
 
     public CheckoutOverview goToCheckoutOverview(){
         driver.findElement(continueButton).click();
-        return new CheckoutOVerview(driver);
+        return new CheckoutOverview(driver);
     }
 
     public Cart goToCartViaCancel(){
