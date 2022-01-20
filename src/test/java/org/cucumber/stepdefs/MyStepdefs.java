@@ -100,4 +100,15 @@ public class MyStepdefs {
     public void pressEnter() {
         loginPage.pressEnter();
     }
+
+    @Given("I have a locked out username and password")
+    public void iHaveALockedOutUsernameAndPassword() {
+        username = UserOptions.LOCKED_OUT.getUserOption();
+        password = "secret_sauce";
+    }
+
+    @Then("an error should be displayed letting me know I am locked out")
+    public void anErrorShouldBeDisplayedLettingMeKnowIAmLockedOut() {
+        Assertions.assertEquals("Epic sadface: Sorry, this user has been locked out.", loginPage.getErrorMessage());
+    }
 }

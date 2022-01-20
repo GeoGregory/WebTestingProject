@@ -12,6 +12,12 @@ Feature: As a user I want to be able to login
     And press enter
     Then I should be logged in and moved to the main page
 
+  Scenario: Login with mouse after providing locked out username and password
+    Given I have a locked out username and password
+    When I type both in
+    And press enter
+    Then an error should be displayed letting me know I am locked out
+
   Scenario: Invalid username or password error
     Given that my username or password are invalid
     When I type both in

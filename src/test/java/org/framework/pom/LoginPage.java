@@ -60,8 +60,8 @@ public class LoginPage extends Page {
         return getPage();
     }
 
-    public Products quickLogin() {
-        inputLoginFields(UserOptions.STANDARD.getUserOption(), "secret_sauce");
+    public Products quickLogin(UserOptions usernameInput) {
+        inputLoginFields(usernameInput.getUserOption(), "secret_sauce");
         clickLoginButton();
         return new Products(driver);
     }
