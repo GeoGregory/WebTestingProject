@@ -1,6 +1,8 @@
 package org.cucumber.stepdefs;
 
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -25,27 +27,21 @@ public class MyStepdefs {
         loginPage = new LoginPage(driver);
     }
 
+    @After
+    public void teardown(){
+        System.out.println("quit");
+        driver.quit();
+    }
+
     @Given("I have a valid username and password")
     public void iHaveAValidUsernameAndPassword() {
         username = UserOptions.STANDARD.getUserOption();
         password = "secret_sauce";
     }
 
-    @When("I type both in and press login")
-    public void iTypeBothInAndPressLogin() {
-       loginPage.inputLoginFields(username, password);
-       loginPage.clickLoginButton();
-    }
-
     @Then("I should be logged in and moved to the main page")
     public void iShouldBeLoggedInAndMovedToTheMainPage() {
         Assertions.assertEquals("https://www.saucedemo.com/inventory.html", driver.getCurrentUrl());
-    }
-
-    @When("I type both in and press enter")
-    public void iTypeBothInAndPressEnter() {
-        loginPage.inputLoginFields(username, password);
-        loginPage.pressEnter();
     }
 
     @Given("that my username or password are invalid")
@@ -66,7 +62,7 @@ public class MyStepdefs {
 
     @Then("an error should be displayed letting me know what fields I didn't fill out")
     public void anErrorShouldBeDisplayedLettingMeKnowWhatFieldsIDidnTFillOut() {
-        Assertions.assertTrue(loginPage.getErrorMessage().contains("is required"));
+        Assertions.assertEquals(true, loginPage.getErrorMessage().contains("is required"));
     }
 
     @When("I leave the password field blank")
@@ -81,12 +77,27 @@ public class MyStepdefs {
 
     @When("I click the x on the error message")
     public void iClickTheXOnTheErrorMessage() {
-        //loginPage.clickErrorCloseButton();
+        loginPage.clickErrorCloseButton();
     }
 
     @Then("the error message should go away")
     public void theErrorMessageShouldGoAway() {
         String errorMessage = loginPage.getErrorMessage();
         Assertions.assertEquals("", errorMessage);
+    }
+
+    @When("I type both in")
+    public void iTypeBothIn() {
+        loginPage.inputLoginFields(username, password);
+    }
+
+    @And("press login")
+    public void pressLogin() {
+        loginPage.clickLoginButton();
+    }
+
+    @And("press enter")
+    public void pressEnter() {
+        loginPage.pressEnter();
     }
 }

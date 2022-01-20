@@ -1,25 +1,33 @@
 Feature: As a user I want to be able to login
 
-  Scenario: Login after providing valid username and password
+  Scenario: Login with mouse after providing valid username and password
     Given I have a valid username and password
-    When I type both in and press login
+    When I type both in
+    And press login
     Then I should be logged in and moved to the main page
 
+  Scenario: Login with enter after providing valid username and password
     Given I have a valid username and password
-    When I type both in and press enter
+    When I type both in
+    And press enter
     Then I should be logged in and moved to the main page
 
-  Scenario: Triggering errors
+  Scenario: Invalid username or password error
     Given that my username or password are invalid
-    When I type both in and press login
+    When I type both in
+    And press login
     Then an error should be displayed letting me know they are invalid
 
+  Scenario: Missing username error
     Given I have a valid username and password
     When I leave the username field blank
+    And press enter
     Then an error should be displayed letting me know what fields I didn't fill out
 
+  Scenario: Missing password error
     Given I have a valid username and password
     When I leave the password field blank
+    And press login
     Then an error should be displayed letting me know what fields I didn't fill out
 
   Scenario: Getting rid of an error message by clicking the "x" button

@@ -79,7 +79,7 @@ public class LoginPage extends Page {
         if (loginHasHappened()){
             return new Products(driver);
         } else {
-            return new LoginPage(driver);
+            return this;
         }
     }
 
