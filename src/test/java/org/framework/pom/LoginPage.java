@@ -33,6 +33,11 @@ public class LoginPage extends Page {
         return getPage();
     }
 
+    public Page pressEnter() {
+        driver.findElement(passwordField).sendKeys(Keys.ENTER);
+        return getPage();
+    }
+
     public void clickErrorCloseButton() {
         driver.findElement(errorMessageCloseButton).click();
     }
