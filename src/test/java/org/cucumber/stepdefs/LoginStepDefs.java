@@ -1,6 +1,5 @@
 package org.cucumber.stepdefs;
 
-import java.util.function.BooleanSupplier;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -144,7 +143,6 @@ public class LoginStepDefs {
         iTimeMyLogIn();
         long standardDuration = duration;
         long bufferTime = 1000000000L;
-        BooleanSupplier booleanSupplier = () -> glitchedDuration > (standardDuration + bufferTime);
-        Assertions.assertTrue(booleanSupplier);
+        Assertions.assertEquals(true,glitchedDuration > (standardDuration + bufferTime));
     }
 }
