@@ -1,10 +1,10 @@
-package test.java.org.framework.pom;
+package org.framework.pom;
 
+import org.framework.pom.Enums.UserOptions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import test.java.org.framework.Enums.UserOptions;
 
 import java.util.List;
 

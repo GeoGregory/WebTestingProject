@@ -1,5 +1,4 @@
-package test.java.org.framework.pom;
-
+package org.framework.pom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 

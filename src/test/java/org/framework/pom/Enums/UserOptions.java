@@ -1,4 +1,4 @@
-package test.java.org.framework.pom.Enums;
+package org.framework.pom.Enums;
 
 public enum UserOptions {
 

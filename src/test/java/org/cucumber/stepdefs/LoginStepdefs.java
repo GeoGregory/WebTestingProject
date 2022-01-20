@@ -3,10 +3,16 @@ package org.cucumber.stepdefs;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.framework.pom.Enums.UserOptions;
 
 public class LoginStepdefs {
+    private String username;
+    private String password;
+
     @Given("I have a valid username and password")
     public void iHaveAValidUsernameAndPassword() {
+        username = UserOptions.STANDARD.getUserOption();
+        password = "secret_sauce";
     }
 
     @When("I type both in and press login")
