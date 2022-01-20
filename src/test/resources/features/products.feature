@@ -3,7 +3,7 @@ Feature: As a user, I want to be able to view products and add or remove product
   Scenario: As a user, I want to be able to view the products
     Given I have logged in
     When I view the products page
-    Then All (6) products should be shown correctly (with corresponding image, price and description)
+    Then All products should be shown correctly (with corresponding image, price and description)
 
   Scenario: As a user, I want to be able to add items to my cart
     Given that I am on the products page

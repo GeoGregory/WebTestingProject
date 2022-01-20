@@ -11,6 +11,8 @@ import org.framework.pom.Products;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import test.java.org.cucumber.CSVReader;
+//import java.util.function.BooleanSupplier;
 
 public class ProductsStepdefs {
 
@@ -29,18 +31,28 @@ public class ProductsStepdefs {
 
     @Given("I have logged in")
     public void iHaveLoggedIn() {
-        loginPage.quickLogin();
+        productsPage = loginPage.quickLogin();
     }
 
     @When("I view the products page")
     public void iViewTheProductsPage() {
 
-
     }
 
-    @Then("All \\({int}) products should be shown correctly \\(with corresponding image, price and description)")
-    public void allProductsShouldBeShownCorrectlyWithCorrespondingImagePriceAndDescription(int arg0) {
+    @Then("All products should be shown correctly \\(with corresponding image, price and description)")
+    public void allProductsShouldBeShownCorrectlyWithCorrespondingImagePriceAndDescription() {
         //read from csv files with elements on the page
+        boolean allCorrect = true;
+        for (int i = 0; i < 6; i++) {
+
+            if((!productsPage.getProductName(i).equals(CSVReader.getProducts(i)[0])) ||
+                    (!productsPage.getProductDesc(i).equals(CSVReader.getProducts(i)[1])) ||
+                    (!productsPage.getProductPrice(i).equals(CSVReader.getProducts(i)[2])) ||
+                    (!productsPage.getProductImg(i).equals(CSVReader.getProducts(i)[3]))) {
+                allCorrect = false;
+            }
+        }
+        Assertions.assertEquals(true, allCorrect);
     }
 
     @Given("that I am on the products page")
