@@ -67,7 +67,12 @@ public class LoginPage extends Page {
     }
 
     public String getErrorMessage() {
-        return driver.findElement(errorMessageContainer).getText();
+        List<WebElement> errorMessageList = driver.findElements(errorMessageContainer);
+        if (errorMessageList.size() != 0){
+            return driver.findElement(errorMessageContainer).getText();
+        } else {
+            return "";
+        }
     }
 
     private Page getPage() {

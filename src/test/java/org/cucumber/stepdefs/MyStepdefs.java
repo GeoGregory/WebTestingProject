@@ -17,7 +17,6 @@ public class MyStepdefs {
     private String username;
     private String password;
 
-
     @Before
     public void setup(){
         System.out.println("setup");
@@ -51,33 +50,43 @@ public class MyStepdefs {
 
     @Given("that my username or password are invalid")
     public void thatMyUsernameOrPasswordAreInvalid() {
+        username = "PavleIsTheBestCoder";
+        password = "LouisIsTheBestCoder";
     }
 
     @Then("an error should be displayed letting me know they are invalid")
     public void anErrorShouldBeDisplayedLettingMeKnowTheyAreInvalid() {
+        Assertions.assertEquals("Epic sadface: Username and password do not match any user in this service",loginPage.getErrorMessage());
     }
 
     @When("I leave the username field blank")
     public void iLeaveTheUsernameFieldBlank() {
+        loginPage.inputLoginFields(username,"");
     }
 
     @Then("an error should be displayed letting me know what fields I didn't fill out")
     public void anErrorShouldBeDisplayedLettingMeKnowWhatFieldsIDidnTFillOut() {
+        Assertions.assertTrue(loginPage.getErrorMessage().contains("is required"));
     }
 
     @When("I leave the password field blank")
     public void iLeaveThePasswordFieldBlank() {
+        loginPage.inputLoginFields("",password);
     }
 
     @Given("that I trigger an error message")
     public void thatITriggerAnErrorMessage() {
+        loginPage.clickLoginButton();
     }
 
     @When("I click the x on the error message")
     public void iClickTheXOnTheErrorMessage() {
+        //loginPage.clickErrorCloseButton();
     }
 
     @Then("the error message should go away")
     public void theErrorMessageShouldGoAway() {
+        String errorMessage = loginPage.getErrorMessage();
+        Assertions.assertEquals("", errorMessage);
     }
 }
