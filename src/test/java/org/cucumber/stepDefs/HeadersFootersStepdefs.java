@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.framework.pom.Enums.UserOptions;
 import org.framework.pom.LoginPage;
 import org.framework.pom.Products;
 import org.openqa.selenium.By;
@@ -27,7 +28,7 @@ public class HeadersFootersStepdefs {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         loginPage = new LoginPage(driver);
-        products = loginPage.quickLogin();
+        products = loginPage.quickLogin(UserOptions.STANDARD);
     }
 
     @When("I click on the burger menu")
@@ -88,7 +89,7 @@ public class HeadersFootersStepdefs {
 
     @And("I log back in again")
     public void iLogBackInAgain() {
-        products = loginPage.quickLogin();
+        products = loginPage.quickLogin(UserOptions.STANDARD);
     }
 
     @Then("My cart will be the same as it was")
