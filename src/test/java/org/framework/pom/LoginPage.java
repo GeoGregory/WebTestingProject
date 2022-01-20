@@ -1,4 +1,4 @@
-package test.java.org.framework.pom;
+package org.framework.pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -74,6 +74,6 @@ public class LoginPage extends Page {
 
     private boolean loginHasHappened() {
         List<WebElement> loginButtonList = driver.findElements(loginButton);
-        return loginButtonList.size() != 0;
+        return loginButtonList.size() == 0;
     }
 }
