@@ -1,4 +1,4 @@
-package test.java.org.cucumber.stepDefs;
+package org.cucumber.stepDefs;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
