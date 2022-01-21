@@ -1,6 +1,7 @@
 package org.framework.pom;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class IndividualProduct extends PageWithHeaderAndFooter{
@@ -11,8 +12,8 @@ public class IndividualProduct extends PageWithHeaderAndFooter{
     private final By productPrice = new By.ByClassName("inventory_details_price");
     //private final By addToCartButton = new By.ById("add-to-cart-sauce-labs-backpack");
     //private final By removeToCartButton = new By.ById("remove-sauce-labs-backpack");
-    private final By addToCartButton = new By.ByClassName("btn btn_primary btn_small btn_inventory");
-    private final By removeToCartButton = new By.ByClassName("btn btn_secondary btn_small btn_inventory");
+    private final By addToCartButton = new By.ByClassName("btn");
+    private final By removeToCartButton = new By.ByClassName("btn");
     private final By backToProductsButton = new By.ById("back-to-products");
     private int originalCartCount = 0;
 
@@ -42,14 +43,25 @@ public class IndividualProduct extends PageWithHeaderAndFooter{
     }
 
     public void toggleSingleProductAddOrRemoveToCart() {
-        originalCartCount = getCartCount();
-        if(driver.findElement(addToCartButton).isEnabled()) {
-            driver.findElement(removeToCartButton).click();
-            //decrement the counter on cart to the cart icon
-        } else {
-            driver.findElement(addToCartButton).click();
-            //increment counter on the cart to the cart icon
+
+        try {
+            if (driver.findElement(removeToCartButton).isEnabled()) {
+                driver.findElement(removeToCartButton).click();
+                //increment counter on the cart to the cart icon
+            }
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
         }
+        try {
+            if(driver.findElement(addToCartButton).isEnabled()) {
+                driver.findElement(addToCartButton).click();
+                //decrement the counter on cart to the cart icon
+            }
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+        }
+        originalCartCount = getCartCount() - 1;
+
     }
 
     public int getOriginalCartCount() {

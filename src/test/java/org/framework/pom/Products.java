@@ -1,5 +1,6 @@
 package org.framework.pom;
 
+import org.cucumber.CSVReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -66,6 +67,31 @@ public class Products extends PageWithHeaderAndFooter {
         return products.get(index).findElement(className);
     }
 
+    public boolean isCorrect(boolean isCorrect, int i) {
+        if (!(CSVReader.getProducts()[i].contains(getProductName(i)))) {
+            isCorrect = false;
+        }
+        return isCorrect;
+    }
+
+    public SortOptions checkSortOptions(String options) {
+
+        if (options.equals(SortOptions.A_TO_Z)) {
+            return SortOptions.A_TO_Z;
+        }
+        if (options.equals(SortOptions.Z_TO_A)) {
+            return SortOptions.Z_TO_A;
+        }
+        if (options.equals(SortOptions.LOW_TO_HIGH)) {
+            return SortOptions.LOW_TO_HIGH;
+        }
+        if (options.equals(SortOptions.HIGH_TO_LOW)) {
+            return SortOptions.HIGH_TO_LOW;
+        }
+        return null;
+    }
+
+
     public void sortBy(SortOptions sortOptions) {
         driver.findElement(By.className("product_sort_container")).click();
 
@@ -86,6 +112,15 @@ public class Products extends PageWithHeaderAndFooter {
                 driver.findElement(By.xpath("//option[@value='az']")).click();
         }
     }
+
+    public boolean getFirstProductOnThePage(String compareFirstProductName) {
+        String firstProductNameOnPage = driver.findElement(By.className("inventory_item_name")).getText();
+        if (compareFirstProductName.equals(firstProductNameOnPage)) {
+            return true;
+        }
+        return false;
+    }
+
     public void toggleAddOrRemoveToCart(By addToCartButton, By removeToCartButton) {
         //originalCartCount = getCartCount();
         if(driver.findElement(addToCartButton).isEnabled()) {

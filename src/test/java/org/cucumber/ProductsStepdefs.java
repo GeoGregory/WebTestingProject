@@ -11,8 +11,6 @@ import org.framework.pom.Products;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import test.java.org.cucumber.CSVReader;
-//import java.util.function.BooleanSupplier;
 
 public class ProductsStepdefs {
 
@@ -44,13 +42,7 @@ public class ProductsStepdefs {
         //read from csv files with elements on the page
         boolean allCorrect = true;
         for (int i = 0; i < 6; i++) {
-
-            if((!productsPage.getProductName(i).equals(CSVReader.getProducts(i)[0])) ||
-                    (!productsPage.getProductDesc(i).equals(CSVReader.getProducts(i)[1])) ||
-                    (!productsPage.getProductPrice(i).equals(CSVReader.getProducts(i)[2])) ||
-                    (!productsPage.getProductImg(i).equals(CSVReader.getProducts(i)[3]))) {
-                allCorrect = false;
-            }
+            allCorrect = productsPage.isCorrect(allCorrect, i);
         }
         Assertions.assertEquals(true, allCorrect);
     }
@@ -67,18 +59,31 @@ public class ProductsStepdefs {
 
     @Then("the cart icon is incremented and the button for that product changes to remove")
     public void theCartIconIsIncrementedAndTheButtonForThatProductChangesToRemove() {
-//        if (productsPage.getOriginalCartCount() != productsPage.getCartCount()) {
-//            //cart count has successfully updated
-//            System.out.println("Success");
-//        } else {
-//            //cart count has not updated. Display error message.
-//            System.out.println("Fail cart count not updated");
-//        }
         Assertions.assertNotEquals(productsPage.getOriginalCartCount(), productsPage.getCartCount());
+    }
+
+    //error from here
+//    @Given("that I am starting on the products page")
+//    public void thatIAmStartingOnTheProductsPage() {
+//        productsPage = loginPage.quickLogin();
+//    }
+//
+//    //error from here - don't know why
+//    @When("I sort by <sortingMethods>")
+//    public void iSortBySortingMethods(String sortingMethod) {
+//        test.java.org.framework.pom.Enums.SortOptions sortOption = productsPage.checkSortOptions(sortingMethod);
+//        productsPage.sortBy(sortOption);
+    }
+    //error from here - don't know why
+    @Then("The products are ordered correctly <firstProduct> is first")
+    public void theProductsAreOrderedCorrectlyFirstProductIsFirst(String firstProduct) {
+        boolean firstProductCheck = productsPage.getFirstProductOnThePage(firstProduct);
+        Assertions.assertEquals(true, firstProductCheck);
     }
 
     @Given("that I am on the product page")
     public void thatIAmOnTheProductPage() {
+        productsPage = loginPage.quickLogin();
         productPage = productsPage.goToProductPage(0);
     }
 
@@ -90,18 +95,6 @@ public class ProductsStepdefs {
     @Then("the cart icon is incremented and the button for that product changes to remove from the product page")
     public void theCartIconIsIncrementedAndTheButtonForThatProductChangesToRemoveFromTheProductPage() {
         Assertions.assertNotEquals(productPage.getOriginalCartCount() , productPage.getCartCount());
-    }
-
-//    @Given("I am on the products page")
-//    public void iAmOnTheProductsPage() {
-//    }
-
-    @When("I sort by <sortingMethods>")
-    public void iSortBySortingMethods() {
-    }
-
-    @Then("The products are ordered correctly")
-    public void theProductsAreOrderedCorrectly() {
     }
 
     @When("I click on a specific product")
@@ -121,4 +114,18 @@ public class ProductsStepdefs {
     void tearDown() {
         driver.quit();
     }
+
+    @Given("that I am starting on the products page")
+    public void thatIAmStartingOnTheProductsPage() {
+    }
+
+    @When("I sort by <sortingMethods>")
+    public void iSortBySortingMethods() {
+    }
+
+    @Then("The products are ordered correctly <firstProduct> is first")
+    public void theProductsAreOrderedCorrectlyFirstProductIsFirst() {
+    }
+
+
 }

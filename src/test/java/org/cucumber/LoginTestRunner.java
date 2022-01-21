@@ -1,4 +1,4 @@
-package test.java.org.cucumber;
+package org.cucumber;
 
 public class LoginTestRunner {
 }

@@ -15,15 +15,16 @@ Feature: As a user, I want to be able to view products and add or remove product
     When I click on the add to cart button for the single product
     Then the cart icon is incremented and the button for that product changes to remove from the product page
 
-  Scenario Outline: : As a user, I want to be able to sort the products by one of the <sortingMethods>.
-    Given that I am on the products page
+  Scenario Outline: : As a user, I want to be able to sort the products in different orders of relevance.
+    Given that I am starting on the products page
     When I sort by <sortingMethods>
-    Then The products are ordered correctly
+    Then The products are ordered correctly <firstProduct> is first
     Examples:
-      | A - Z     |
-      | Z - A     |
-      | Price Asc |
-      | Price Des |
+      | sortingMethods          | firstProduct                      |
+      | Name (A to Z)           | Sauce Labs backpack               |
+      | Name (Z to A)           | Sauce test All the things T-shirt |
+      | Price (low to high)     | Sauce Labs Onesie                  |
+      | Price (high to low)     | Sauce Labs FleeceJacket           |
 
   Scenario: As a user, I want to inspect each product on its own page
     Given that I am on the products page
