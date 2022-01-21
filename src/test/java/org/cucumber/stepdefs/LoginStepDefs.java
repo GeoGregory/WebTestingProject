@@ -1,4 +1,4 @@
-package org.cucumber.stepdefs;
+package org.cucumber.stepDefs;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -20,19 +20,19 @@ public class LoginStepDefs {
     private String password;
     private long duration;
 
-    @Before
-    public void setup(){
-        System.out.println("setup");
-        POMUtils.setDriverLocation("src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
-        loginPage = new LoginPage(driver);
-    }
-
-    @After
-    public void teardown(){
-        System.out.println("quit");
-        driver.quit();
-    }
+//    @Before
+//    public void setup(){
+//        System.out.println("setup");
+//        POMUtils.setDriverLocation("src/test/resources/chromedriver.exe");
+//        driver = new ChromeDriver();
+//        loginPage = new LoginPage(driver);
+//    }
+//
+//    @After
+//    public void teardown(){
+//        System.out.println("quit");
+//        driver.quit();
+//    }
 
     @Given("I have a valid username and password")
     public void iHaveAValidUsernameAndPassword() {
@@ -51,8 +51,8 @@ public class LoginStepDefs {
         password = "LouisIsTheBestCoder";
     }
 
-    @Then("an error should be displayed letting me know they are invalid")
-    public void anErrorShouldBeDisplayedLettingMeKnowTheyAreInvalid() {
+    @Then("an error should be displayed letting me know the username or password are invalid")
+    public void anErrorShouldBeDisplayedLettingMeKnowTheUsernameAndOrPasswordAreInvalid() {
         Assertions.assertEquals("Epic sadface: Username and password do not match any user in this service",loginPage.getErrorMessage());
     }
 
@@ -145,4 +145,11 @@ public class LoginStepDefs {
         long bufferTime = 1000000000L;
         Assertions.assertEquals(true,glitchedDuration > (standardDuration + bufferTime));
     }
+
+    @Given("I log in with Bernie's username and password")
+    public void iLogInWithBernieSUsernameAndPassword() {
+        username = "Bernie 1982";
+        password = "Hunter2";
+    }
+
 }
