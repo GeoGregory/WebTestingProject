@@ -1,6 +1,7 @@
 package org.cucumber.stepDefs;
 
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.framework.pom.*;
 import org.framework.pom.Enums.UserOptions;
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class checkoutCompleteStepDefs {
+public class CheckoutCompleteStepDefs {
 
     private WebDriver driver;
     private LoginPage loginPage;
@@ -36,6 +37,10 @@ public class checkoutCompleteStepDefs {
     @When("I click the BACK HOME button")
     public void iClickTheBACKHOMEButton() {
         products = finish.goToPastPage();
+    }
+
+    @Then("I should be taken to the main products page from the checkout complete page")
+    public void iShouldBeTakenToTheMainProductsPageFromTheCheckoutCompletePage() {
         Assertions.assertEquals("https://www.saucedemo.com/inventory.html", products.getURL());
     }
 }

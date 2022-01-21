@@ -1,9 +1,11 @@
 package org.cucumber.stepDefs;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.framework.pom.Cart;
+import org.framework.pom.CheckoutYourInfo;
 import org.framework.pom.Enums.UserOptions;
 import org.framework.pom.LoginPage;
 import org.framework.pom.Products;
@@ -18,6 +20,12 @@ public class cartStepDefs {
     private LoginPage loginPage;
     private Products products;
     private Cart cart;
+    private CheckoutYourInfo yourInfo;
+
+//    @Before
+//    public void before() {
+//
+//    }
 
     @Given("I am logged in and on the cart page with the backpack added")
     public void iAmLoggedInAndOnTheCartPageWithTheBackpackAdded() {
@@ -43,17 +51,17 @@ public class cartStepDefs {
 
     @When("I click the CHECKOUT button")
     public void iClickTheCHECKOUTButton() {
-        cart.goToCheckout();
+        yourInfo = cart.goToCheckout();
     }
 
     @Then("I should be taken to a page to enter my details")
     public void iShouldBeTakenToAPageToEnterMyDetails() {
-        Assertions.assertEquals("https://www.saucedemo.com/checkout-step-one.html", driver.getCurrentUrl());
+        Assertions.assertEquals("https://www.saucedemo.com/checkout-step-one.html", yourInfo.getURL());
     }
 
     @When("I click the CONTINUE SHOPPING button")
     public void iClickTheCONTINUESHOPPINGButton() {
-        cart.goToProducts();
+        products = cart.goToProducts();
     }
 
     @Then("I should be taken to the main products page")
