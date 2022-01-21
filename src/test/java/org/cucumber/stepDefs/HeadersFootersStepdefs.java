@@ -116,39 +116,42 @@ public class HeadersFootersStepdefs {
     @When("I click on the all items link")
     public void iClickOnTheAllItemsLink() {
         driver.findElement(By.className("bm-menu"))
-                .findElement(By.id("about_sidebar_link")).click();
+                .findElement(By.id("inventory_sidebar_link")).click();
     }
 
     @Then("I will be taken to the all items page")
     public void iWillBeTakenToTheAllItemsPage() {
-
+        Assertions.assertEquals("https://www.saucedemo.com/inventory.html", products.getURL());
     }
 
     @When("I click on the about link")
     public void iClickOnTheAboutLink() {
+        driver.findElement(By.className("bm-menu"))
+                .findElement(By.id("about_sidebar_link")).click();
     }
 
     @Then("I will be taken to the about page")
     public void iWillBeTakenToTheAboutPage() {
+        Assertions.assertEquals("https://saucelabs.com/", products.getURL());
     }
 
     @When("I click on the logout link")
     public void iClickOnTheLogoutLink() {
+        driver.findElement(By.className("bm-menu"))
+                .findElement(By.id("logout_sidebar_link")).click();
     }
 
     @Then("I will be taken to the login page")
     public void iWillBeTakenToTheLoginPage() {
-    }
-
-    @When("the basket has items")
-    public void theBasketHasItems() {
+        Assertions.assertEquals("https://www.saucedemo.com/", products.getURL());
     }
 
     @Then("the trolley icon will display the number of items in the basket")
     public void theTrolleyIconWillDisplayTheNumberOfItemsInTheBasket() {
+        Assertions.assertEquals(1, cartNum);
     }
 
-    @When("I add a product to the cart")
+    @And("I add a product to the cart")
     public void iAddAProductToTheCart() {
     }
 
@@ -156,7 +159,7 @@ public class HeadersFootersStepdefs {
     public void theTrolleyIconWillIncrement() {
     }
 
-    @When("I remove a product from the cart")
+    @And("I remove a product from the cart")
     public void iRemoveAProductFromTheCart() {
     }
 
