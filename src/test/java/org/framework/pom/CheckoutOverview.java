@@ -1,4 +1,4 @@
-package test.java.framework.pom;
+package org.framework.pom;
 
 import io.cucumber.java.eo.Do;
 import org.openqa.selenium.By;

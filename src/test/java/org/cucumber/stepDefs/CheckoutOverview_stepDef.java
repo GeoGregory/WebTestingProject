@@ -1,23 +1,23 @@
-package test.java.cucumber.stepDefs;
+package org.cucumber.stepDefs;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.framework.pom.*;
+import org.framework.pom.Enums.UserOptions;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import test.java.framework.pom.*;
 
 import java.util.List;
 
 public class CheckoutOverview_stepDef {
 
 
-    CheckoutOverview checkoutOverview;
-
+    private CheckoutOverview checkoutOverview;
     private WebDriver driver;
     private LoginPage loginPage;
     private Products productsPage;
@@ -30,7 +30,7 @@ public class CheckoutOverview_stepDef {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         loginPage = new LoginPage(driver);
-        productsPage = loginPage.quickLogin();
+//        productsPage = loginPage.quickLogin();
         productsPage.toggleAddOrRemoveToCart(productsPage.getAddBackpackButton(), productsPage.getAddBackpackButton());
         cart = productsPage.goToCart();
         items = cart.getAllProducts();
