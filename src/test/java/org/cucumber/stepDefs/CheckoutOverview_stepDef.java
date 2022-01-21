@@ -25,21 +25,21 @@ public class CheckoutOverview_stepDef {
     private CheckoutYourInfo checkoutYourInfo;
     private List<WebElement> items;
 
-    @Before
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
-        loginPage = new LoginPage(driver);
-        productsPage = loginPage.quickLogin(UserOptions.STANDARD);
-        productsPage.toggleAddOrRemoveToCart(productsPage.getAddBackpackButton(), productsPage.getAddBackpackButton());
-        cart = productsPage.goToCart();
-        items = cart.getAllProducts();
-        checkoutYourInfo = cart.goToCheckout();
-        checkoutYourInfo.setTextField(CheckoutYourInfo.TextFields.FIRSTNAME, "name");
-        checkoutYourInfo.setTextField(CheckoutYourInfo.TextFields.LASTNAME, "name");
-        checkoutYourInfo.setTextField(CheckoutYourInfo.TextFields.ZIPPOSTALCODE, "name");
-        checkoutOverview = checkoutYourInfo.goToCheckoutOverview();
-    }
+//    @Before
+//    public void setup() {
+//        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+//        driver = new ChromeDriver();
+//        loginPage = new LoginPage(driver);
+////        productsPage = loginPage.quickLogin(UserOptions.STANDARD);
+////        productsPage.toggleAddOrRemoveToCart(productsPage.getAddBackpackButton(), productsPage.getAddBackpackButton());
+////        cart = productsPage.goToCart();
+////        items = cart.getAllProducts();
+////        checkoutYourInfo = cart.goToCheckout();
+////        checkoutYourInfo.setTextField(CheckoutYourInfo.TextFields.FIRSTNAME, "name");
+////        checkoutYourInfo.setTextField(CheckoutYourInfo.TextFields.LASTNAME, "name");
+////        checkoutYourInfo.setTextField(CheckoutYourInfo.TextFields.ZIPPOSTALCODE, "name");
+////        checkoutOverview = checkoutYourInfo.goToCheckoutOverview();
+//    }
 
     @Given("I am on the CheckoutOverview Page")
     public void iAmOnTheCheckoutOverviewPage() {

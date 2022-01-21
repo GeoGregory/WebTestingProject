@@ -1,5 +1,7 @@
-
+@login @all
 Feature: As a user I want to be able to login
+  Background:
+    Given I am on the login page
 
   Scenario: Login with mouse after providing valid username and password
     Given I have a valid username and password
