@@ -48,7 +48,6 @@ public class HeadersFootersStepdefs {
 
     @Then("The burger menu will display its elements")
     public void theBurgerMenuWillDisplayItsElements() {
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         String firstElementOnList = driver.findElement(By.className("bm-menu")).findElement(By.xpath("//a[@id='inventory_sidebar_link']")).getText();
         assertEquals("ALL ITEMS", firstElementOnList);
     }

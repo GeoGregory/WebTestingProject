@@ -51,8 +51,8 @@ public class LoginStepDefs {
         password = "LouisIsTheBestCoder";
     }
 
-    @Then("an error should be displayed letting me know they are invalid")
-    public void anErrorShouldBeDisplayedLettingMeKnowTheyAreInvalid() {
+    @Then("an error should be displayed letting me know the username or password are invalid")
+    public void anErrorShouldBeDisplayedLettingMeKnowTheUsernameAndOrPasswordAreInvalid() {
         Assertions.assertEquals("Epic sadface: Username and password do not match any user in this service",loginPage.getErrorMessage());
     }
 
@@ -145,4 +145,11 @@ public class LoginStepDefs {
         long bufferTime = 1000000000L;
         Assertions.assertEquals(true,glitchedDuration > (standardDuration + bufferTime));
     }
+
+    @Given("I log in with Bernie's username and password")
+    public void iLogInWithBernieSUsernameAndPassword() {
+        username = "Bernie 1982";
+        password = "Hunter2";
+    }
+
 }
