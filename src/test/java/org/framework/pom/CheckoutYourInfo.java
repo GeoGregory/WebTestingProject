@@ -7,7 +7,7 @@ public class CheckoutYourInfo extends PageWithHeaderAndFooter {
 
     private final By cancelButton = new By.ById("cancel");
     private final By continueButton = new By.ById("continue");
-    private final By errorMessage = new By.ByClassName("error-message-container error");
+    private final By errorMessage = new By.ByXPath("//h3[contains(.,'Error')]");
 
     public CheckoutYourInfo(WebDriver driver) {
         super(driver);

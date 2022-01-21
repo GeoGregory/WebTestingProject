@@ -5,6 +5,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.framework.pom.Enums.UserOptions;
 import org.framework.pom.IndividualProduct;
 import org.framework.pom.LoginPage;
 import org.framework.pom.Products;
@@ -19,17 +20,21 @@ public class ProductsStepdefs {
     private Products productsPage;
     private IndividualProduct productPage;
 
-    @Before
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
-        loginPage = new LoginPage(driver);
-    }
-
+//    @Before
+//    public void setup() {
+//        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+//        driver = new ChromeDriver();
+//        loginPage = new LoginPage(driver);
+//    }
+//
+//    @After
+//    void tearDown() {
+//        driver.quit();
+//    }
 
     @Given("I have logged in")
     public void iHaveLoggedIn() {
-        loginPage.quickLogin();
+        loginPage.quickLogin(UserOptions.STANDARD);
     }
 
     @When("I view the products page")
@@ -45,7 +50,7 @@ public class ProductsStepdefs {
 
     @Given("that I am on the products page")
     public void thatIAmOnTheProductsPage() {
-        productsPage = loginPage.quickLogin();
+        productsPage = loginPage.quickLogin(UserOptions.STANDARD);
     }
 
     @When("I click on the add to cart button")
@@ -94,7 +99,7 @@ public class ProductsStepdefs {
 
     @When("I click on a specific product")
     public void iClickOnASpecificProduct() {
-        productsPage = loginPage.quickLogin();
+        productsPage = loginPage.quickLogin(UserOptions.STANDARD);
         productPage = productsPage.goToProductPage(1);
     }
 
@@ -105,8 +110,5 @@ public class ProductsStepdefs {
 //        Assertions.assertEquals(productNameCheckFromProducts,productNameCheckFromIndividualProduct);
     }
 
-    @After
-    void tearDown() {
-        driver.quit();
-    }
+
 }

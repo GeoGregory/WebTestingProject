@@ -1,14 +1,25 @@
 package org.framework.pom;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import test.java.org.framework.pom.Enums.BurgerLinks;
 
-import test.java.org.framework.Enums.BurgerLinks;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
-public abstract class PageWithHeaderAndFooter extends Page{
+
+public class PageWithHeaderAndFooter extends Page{
 
     protected By cart;
     protected By cartCount;
+    private final By twitterLink = new By.ByClassName("social_twitter");
+    private final By facebookLink = new By.ByClassName("social_facebook");
+    private final By linkedInLink = new By.ByClassName("social_linkedin");
+
 
     public PageWithHeaderAndFooter(WebDriver driver) {
         super(driver);
@@ -17,15 +28,15 @@ public abstract class PageWithHeaderAndFooter extends Page{
     }
 
     public String getTwitter(){
-        return "https://twitter.com/saucelabs";
+        return getNewTabURL(driver.findElement(twitterLink));
     }
 
     public String getFacebook(){
-        return "https://www.facebook.com/saucelabs";
+        return getNewTabURL(driver.findElement(facebookLink));
     }
 
     public String getLinkedIn(){
-        return "https://www.linkedin.com/company/sauce-labs/";
+        return getNewTabURL(driver.findElement(linkedInLink));
     }
 
     public Cart goToCart() {
@@ -57,5 +68,24 @@ public abstract class PageWithHeaderAndFooter extends Page{
 
             default: return null;
         }
+    }
+
+    private String getNewTabURL(WebElement externalLink){
+        String originalTab = driver.getWindowHandle();
+        externalLink.click();
+        Set<String> handles = driver.getWindowHandles();
+
+        for (String tab: handles){
+            if (!originalTab.equals(tab)){
+                driver.switchTo().window(tab);
+                break;
+            }
+        }
+
+        String externalURL = driver.getCurrentUrl();
+
+        driver.switchTo().window(originalTab);
+
+        return externalURL;
     }
 }
