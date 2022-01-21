@@ -30,7 +30,7 @@ public class CheckoutOverview_stepDef {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         loginPage = new LoginPage(driver);
-//        productsPage = loginPage.quickLogin();
+        productsPage = loginPage.quickLogin(UserOptions.STANDARD);
         productsPage.toggleAddOrRemoveToCart(productsPage.getAddBackpackButton(), productsPage.getAddBackpackButton());
         cart = productsPage.goToCart();
         items = cart.getAllProducts();
@@ -96,11 +96,5 @@ public class CheckoutOverview_stepDef {
     @Then("I see all the things I am purchasing")
     public void iSeeAllTheThingsIAmPurchasing() {
         Assert.assertEquals(items, checkoutOverview.getCartItems());
-    }
-
-    @After
-    public void tearDown(){
-        driver.quit();
-        System.out.println("tearDown");
     }
 }

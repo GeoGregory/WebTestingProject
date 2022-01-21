@@ -155,7 +155,6 @@ public class MainStepDefs {
         cart = products.goToCart();
     }
 
-
     @When("I click REMOVE on the backpack")
     public void iClickREMOVEOnTheBackpack() {
         cart.removeProduct(Cart.Products.BACKPACK);
