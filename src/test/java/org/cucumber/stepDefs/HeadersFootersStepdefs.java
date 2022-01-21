@@ -22,6 +22,7 @@ public class HeadersFootersStepdefs {
     private LoginPage loginPage;
     private Products products;
     private Integer cartNum;
+    private String externalURL;
 
     @Given("I am on a page with a header and footer")
     public void iAmOnAPageWithAHeaderAndFooter() {
@@ -44,12 +45,12 @@ public class HeadersFootersStepdefs {
 
     @When("I click the twitter icon")
     public void iClickTheTwitterIcon() {
-        driver.findElement(By.linkText("Twitter")).click();
+        externalURL = products.getTwitter();
     }
 
     @Then("I wll be taken to the Swag twitter")
     public void iWllBeTakenToTheSwagTwitter() {
-        assertEquals("https://twitter.com/saucelabs", products.getTwitter());
+        assertEquals("https://twitter.com/saucelabs", externalURL);
     }
 
 

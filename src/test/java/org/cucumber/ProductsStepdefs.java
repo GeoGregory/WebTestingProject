@@ -20,13 +20,17 @@ public class ProductsStepdefs {
     private Products productsPage;
     private IndividualProduct productPage;
 
-    @Before
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
-        loginPage = new LoginPage(driver);
-    }
-
+//    @Before
+//    public void setup() {
+//        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+//        driver = new ChromeDriver();
+//        loginPage = new LoginPage(driver);
+//    }
+//
+//    @After
+//    void tearDown() {
+//        driver.quit();
+//    }
 
     @Given("I have logged in")
     public void iHaveLoggedIn() {
@@ -106,8 +110,5 @@ public class ProductsStepdefs {
 //        Assertions.assertEquals(productNameCheckFromProducts,productNameCheckFromIndividualProduct);
     }
 
-    @After
-    void tearDown() {
-        driver.quit();
-    }
+
 }

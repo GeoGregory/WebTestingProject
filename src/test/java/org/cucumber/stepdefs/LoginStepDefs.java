@@ -1,4 +1,4 @@
-package org.cucumber.stepdefs;
+package org.cucumber.stepDefs;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -20,19 +20,19 @@ public class LoginStepDefs {
     private String password;
     private long duration;
 
-    @Before
-    public void setup(){
-        System.out.println("setup");
-        POMUtils.setDriverLocation("src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
-        loginPage = new LoginPage(driver);
-    }
-
-    @After
-    public void teardown(){
-        System.out.println("quit");
-        driver.quit();
-    }
+//    @Before
+//    public void setup(){
+//        System.out.println("setup");
+//        POMUtils.setDriverLocation("src/test/resources/chromedriver.exe");
+//        driver = new ChromeDriver();
+//        loginPage = new LoginPage(driver);
+//    }
+//
+//    @After
+//    public void teardown(){
+//        System.out.println("quit");
+//        driver.quit();
+//    }
 
     @Given("I have a valid username and password")
     public void iHaveAValidUsernameAndPassword() {
