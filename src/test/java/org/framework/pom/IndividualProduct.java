@@ -3,15 +3,18 @@ package org.framework.pom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+
+import java.time.Duration;
 
 public class IndividualProduct extends PageWithHeaderAndFooter{
 
-    private final By productName = new By.ByClassName("inventory_details_name large_size");
+    private final By productName = new By.ByClassName("inventory_details_name");
     private final By productImage = new By.ByClassName("inventory_details_img");
     private final By productDescription = new By.ByClassName("inventory_details_desc large_size");
     private final By productPrice = new By.ByClassName("inventory_details_price");
-    //private final By addToCartButton = new By.ById("add-to-cart-sauce-labs-backpack");
-    //private final By removeToCartButton = new By.ById("remove-sauce-labs-backpack");
     private final By addToCartButton = new By.ByClassName("btn");
     private final By removeToCartButton = new By.ByClassName("btn");
     private final By backToProductsButton = new By.ById("back-to-products");
@@ -22,6 +25,14 @@ public class IndividualProduct extends PageWithHeaderAndFooter{
     }
 
     public String getProductName() {
+        FluentWait wait = new FluentWait(driver);
+        //Specify the timout of the wait
+        wait.withTimeout(Duration.ofSeconds(5));
+        //Sepcify polling time
+        wait.pollingEvery(Duration.ofSeconds(1));
+        //Specify what exceptions to ignore
+        wait.ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.presenceOfElementLocated(productName));
         return driver.findElement(productName).getText();
     }
 
@@ -47,7 +58,7 @@ public class IndividualProduct extends PageWithHeaderAndFooter{
         try {
             if (driver.findElement(removeToCartButton).isEnabled()) {
                 driver.findElement(removeToCartButton).click();
-                //increment counter on the cart to the cart icon
+                //decrement the counter on cart to the cart icon
             }
         } catch (NoSuchElementException e) {
             e.printStackTrace();
@@ -55,7 +66,7 @@ public class IndividualProduct extends PageWithHeaderAndFooter{
         try {
             if(driver.findElement(addToCartButton).isEnabled()) {
                 driver.findElement(addToCartButton).click();
-                //decrement the counter on cart to the cart icon
+                //increment counter on the cart to the cart icon
             }
         } catch (NoSuchElementException e) {
             e.printStackTrace();

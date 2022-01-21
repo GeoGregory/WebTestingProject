@@ -2,15 +2,21 @@ package org.framework.pom;
 
 import org.cucumber.CSVReader;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import test.java.org.framework.pom.Enums.SortOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 
+
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Products extends PageWithHeaderAndFooter {
 
+    private static final long SECONDS = 5;
     private final By PRODUCT;
     private final By addBackpackButton = new By.ById("add-to-cart-sauce-labs-backpack");
     private final By removeBackpackButton = new By.ById("remove-sauce-labs-backpack");
@@ -43,8 +49,21 @@ public class Products extends PageWithHeaderAndFooter {
     }
 
     public String getProductName(int index){
-        By className = new By.ByClassName("inventory_item_name");
-        return products.get(index).findElement(className).getText();
+        //Declare and initialise a fluent wait
+        FluentWait wait = new FluentWait(driver);
+//Specify the timout of the wait
+        wait.withTimeout(Duration.ofSeconds(5));
+//Sepcify polling time
+        wait.pollingEvery(Duration.ofSeconds(1));
+//Specify what exceptions to ignore
+        wait.ignoring(NoSuchElementException.class);
+//This is how we specify the condition to wait on.
+//This is what we will explore more in this chapter
+        By xPath = new By.ByXPath("//a[@id='item_"+ index +"_title_link']/div");
+        wait.until(ExpectedConditions.presenceOfElementLocated(xPath));
+        return wait.until((name) -> products.get(index).findElement(xPath).getText()).toString();
+        //return products.get(index).findElement(xPath).getText();
+        //driver.findElement(By.xpath("//option[@value='az']")).click();
     }
 
     public String getProductDesc(int index){
@@ -74,43 +93,22 @@ public class Products extends PageWithHeaderAndFooter {
         return isCorrect;
     }
 
-    public SortOptions checkSortOptions(String options) {
+    public void checkSortOptions(String options) {
 
-        if (options.equals(SortOptions.A_TO_Z)) {
-            return SortOptions.A_TO_Z;
-        }
-        if (options.equals(SortOptions.Z_TO_A)) {
-            return SortOptions.Z_TO_A;
-        }
-        if (options.equals(SortOptions.LOW_TO_HIGH)) {
-            return SortOptions.LOW_TO_HIGH;
-        }
-        if (options.equals(SortOptions.HIGH_TO_LOW)) {
-            return SortOptions.HIGH_TO_LOW;
-        }
-        return null;
-    }
-
-
-    public void sortBy(SortOptions sortOptions) {
         driver.findElement(By.className("product_sort_container")).click();
-
-        switch(sortOptions) {
-            case A_TO_Z:
-                driver.findElement(By.xpath("//option[@value='az']")).click();
-
-            case Z_TO_A:
-                driver.findElement(By.xpath("//option[@value='za']")).click();
-
-            case LOW_TO_HIGH:
-                driver.findElement(By.xpath("//option[@value='lohi']")).click();
-
-            case HIGH_TO_LOW:
-                driver.findElement(By.xpath("//option[@value='hilo']")).click();
-
-            default:
-                driver.findElement(By.xpath("//option[@value='az']")).click();
+        if (options.equals("Name (A to Z)")) {
+            driver.findElement(By.xpath("//option[@value='az']")).click();
         }
+        if (options.equals("Name (Z to A)")) {
+            driver.findElement(By.xpath("//option[@value='za']")).click();
+        }
+        if (options.equals("Price (low to high)")) {
+            driver.findElement(By.xpath("//option[@value='lohi']")).click();
+        }
+        if (options.equals("Price (high to low)")) {
+            driver.findElement(By.xpath("//option[@value='hilo']")).click();
+        }
+
     }
 
     public boolean getFirstProductOnThePage(String compareFirstProductName) {
@@ -185,3 +183,42 @@ public class Products extends PageWithHeaderAndFooter {
         return originalCartCount;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    public void sortBy(SortOptions sortOptions) {
+//        driver.findElement(By.className("product_sort_container")).click();
+//
+//        switch(sortOptions) {
+//            case A_TO_Z:
+//                driver.findElement(By.xpath("//option[@value='az']")).click();
+//
+//            case Z_TO_A:
+//                driver.findElement(By.xpath("//option[@value='za']")).click();
+//
+//            case LOW_TO_HIGH:
+//                driver.findElement(By.xpath("//option[@value='lohi']")).click();
+//
+//            case HIGH_TO_LOW:
+//                driver.findElement(By.xpath("//option[@value='hilo']")).click();
+//
+//            default:
+//                driver.findElement(By.xpath("//option[@value='az']")).click();
+//        }
+//    }
