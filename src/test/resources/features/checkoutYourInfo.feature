@@ -1,5 +1,5 @@
-@yourInfo
-Feature: Checkout: Your Info page
+@yourInfo @all
+Feature: As a user, I want to be able to enter my information
 
   Background:
     Given I am logged in as a standard user and on the checkout your info page
