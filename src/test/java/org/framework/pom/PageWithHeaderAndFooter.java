@@ -1,8 +1,8 @@
 package org.framework.pom;
 
+import org.framework.pom.Enums.BurgerLinks;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import test.java.org.framework.pom.Enums.BurgerLinks;
 
 
 public class PageWithHeaderAndFooter extends Page{

@@ -49,21 +49,14 @@ public class Products extends PageWithHeaderAndFooter {
     }
 
     public String getProductName(int index){
-        //Declare and initialise a fluent wait
         FluentWait wait = new FluentWait(driver);
-//Specify the timout of the wait
         wait.withTimeout(Duration.ofSeconds(5));
-//Sepcify polling time
         wait.pollingEvery(Duration.ofSeconds(1));
-//Specify what exceptions to ignore
         wait.ignoring(NoSuchElementException.class);
-//This is how we specify the condition to wait on.
-//This is what we will explore more in this chapter
+
         By xPath = new By.ByXPath("//a[@id='item_"+ index +"_title_link']/div");
         wait.until(ExpectedConditions.presenceOfElementLocated(xPath));
         return wait.until((name) -> products.get(index).findElement(xPath).getText()).toString();
-        //return products.get(index).findElement(xPath).getText();
-        //driver.findElement(By.xpath("//option[@value='az']")).click();
     }
 
     public String getProductDesc(int index){
@@ -120,13 +113,12 @@ public class Products extends PageWithHeaderAndFooter {
     }
 
     public void toggleAddOrRemoveToCart(By addToCartButton, By removeToCartButton) {
-        //originalCartCount = getCartCount();
         if(driver.findElement(addToCartButton).isEnabled()) {
             driver.findElement(addToCartButton).click();
-            //decrement the counter on cart to the cart icon
+            //increment counter on the cart to the cart icon
         } else {
             driver.findElement(removeToCartButton).click();
-            //increment counter on the cart to the cart icon
+            //decrement the counter on cart to the cart icon
         }
         originalCartCount = getCartCount() - 1;
     }

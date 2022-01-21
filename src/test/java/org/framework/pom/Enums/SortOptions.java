@@ -1,4 +1,4 @@
-package test.java.org.framework.pom.Enums;
+package org.framework.pom.Enums;
 
 public enum SortOptions {
     A_TO_Z("Name (A to Z)"),
