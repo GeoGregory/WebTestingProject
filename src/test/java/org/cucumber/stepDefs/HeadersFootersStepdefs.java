@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import org.framework.pom.Enums.UserOptions;
 import org.framework.pom.LoginPage;
 import org.framework.pom.Products;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,7 +40,7 @@ public class HeadersFootersStepdefs {
 
     @Then("The burger menu with display its elements")
     public void theBurgerMenuWithDisplayItsElements() {
-        String firstElementOnList = driver.findElement(By.className("bm-menu")).findElement(By.xpath("//a[contains(text(),'All Items')]")).getText();
+        String firstElementOnList = driver.findElement(By.className("bm-menu")).findElement(By.xpath("//a[@id='inventory_sidebar_link']")).getText();
         assertEquals("ALL ITEMS", firstElementOnList);
     }
 
@@ -96,5 +97,61 @@ public class HeadersFootersStepdefs {
     @Then("My cart will be the same as it was")
     public void myCartWillBeTheSameAsItWas() {
         assertEquals(cartNum, products.getCartCount());
+    }
+
+    @Given("I have opened the burger menu")
+    public void iHaveOpenedTheBurgerMenu() {
+        iClickOnTheBurgerMenu();
+    }
+
+    @When("I click on the all items link")
+    public void iClickOnTheAllItemsLink() {
+        driver.findElement(By.className("bm-menu"))
+                .findElement(By.id("about_sidebar_link")).click();
+    }
+
+    @Then("I will be taken to the all items page")
+    public void iWillBeTakenToTheAllItemsPage() {
+
+    }
+
+    @When("I click on the about link")
+    public void iClickOnTheAboutLink() {
+    }
+
+    @Then("I will be taken to the about page")
+    public void iWillBeTakenToTheAboutPage() {
+    }
+
+    @When("I click on the logout link")
+    public void iClickOnTheLogoutLink() {
+    }
+
+    @Then("I will be taken to the login page")
+    public void iWillBeTakenToTheLoginPage() {
+    }
+
+    @When("the basket has items")
+    public void theBasketHasItems() {
+    }
+
+    @Then("the trolley icon will display the number of items in the basket")
+    public void theTrolleyIconWillDisplayTheNumberOfItemsInTheBasket() {
+    }
+
+    @When("I add a product to the cart")
+    public void iAddAProductToTheCart() {
+    }
+
+    @Then("the trolley icon will increment")
+    public void theTrolleyIconWillIncrement() {
+    }
+
+    @When("I remove a product from the cart")
+    public void iRemoveAProductFromTheCart() {
+    }
+
+    @Then("the trolley icon will decrement")
+    public void theTrolleyIconWillDecrement() {
     }
 }
