@@ -2,9 +2,9 @@ Feature: As a user I want to be able to interact with the menu and social media 
   Background: Starting from a page with a header and footer
     Given I am on a page with a header and footer
 
-    Scenario: Clicking on the burger menu
-      When I click on the burger menu
-      Then The burger menu with display its elements
+#    Scenario: Clicking on the burger menu
+#      When I click on the burger menu
+#      Then The burger menu will display its elements
 
     Scenario: Clicking on the all items link after opening the burger menu
       Given I have opened the burger menu

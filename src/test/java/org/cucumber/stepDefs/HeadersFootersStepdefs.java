@@ -1,5 +1,6 @@
 package org.cucumber.stepDefs;
 
+import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -24,6 +26,11 @@ public class HeadersFootersStepdefs {
     private Products products;
     private Integer cartNum;
     private String externalURL;
+
+    @After
+    public void tearDown() {
+        driver.quit();
+    }
 
     @Given("I am on a page with a header and footer")
     public void iAmOnAPageWithAHeaderAndFooter() {
@@ -36,10 +43,11 @@ public class HeadersFootersStepdefs {
     @When("I click on the burger menu")
     public void iClickOnTheBurgerMenu() {
         driver.findElement(By.id("react-burger-menu-btn")).click();
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
     }
 
-    @Then("The burger menu with display its elements")
-    public void theBurgerMenuWithDisplayItsElements() {
+    @Then("The burger menu will display its elements")
+    public void theBurgerMenuWillDisplayItsElements() {
         String firstElementOnList = driver.findElement(By.className("bm-menu")).findElement(By.xpath("//a[@id='inventory_sidebar_link']")).getText();
         assertEquals("ALL ITEMS", firstElementOnList);
     }
@@ -57,22 +65,22 @@ public class HeadersFootersStepdefs {
 
     @When("I click the facebook icon")
     public void iClickTheFacebookIcon() {
-        driver.findElement(By.linkText("Facebook")).click();
+        externalURL = products.getFacebook();
     }
 
     @Then("I wll be taken to the Swag facebook")
     public void iWllBeTakenToTheSwagFacebook() {
-        assertEquals("https://www.facebook.com/saucelabs", products.getFacebook());
+        assertEquals("https://www.facebook.com/saucelabs", externalURL);
     }
 
     @When("I click the linkedin icon")
     public void iClickTheLinkedinIcon() {
-        driver.findElement(By.linkText("LinkedIn")).click();
+        externalURL = products.getLinkedIn();
     }
 
     @Then("I wll be taken to the Swag linkedin")
     public void iWllBeTakenToTheSwagLinkedin() {
-        assertEquals("https://www.linkedin.com/company/sauce-labs/", products.getLinkedIn());
+        assertEquals(true, externalURL.contains("linkedin.com"));
     }
 
     @When("I have an item in my basket")
