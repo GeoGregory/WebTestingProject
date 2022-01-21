@@ -1,4 +1,6 @@
+@cart @all
 Feature: As a user, I want to use the functions of the cart
+
   Background: Logged in and on the cart page with the backpack added
     Given I am logged in and on the cart page with the backpack added
 

@@ -1,3 +1,4 @@
+
 Feature: As a user I want to be able to login
 
   Scenario: Login with mouse after providing valid username and password

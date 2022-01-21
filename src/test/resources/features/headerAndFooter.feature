@@ -1,3 +1,4 @@
+@headerAndFooter @all
 Feature: As a user I want to be able to interact with the menu and social media links
   Background: Starting from a page with a header and footer
     Given I am on a page with a header and footer
@@ -37,8 +38,8 @@ Feature: As a user I want to be able to interact with the menu and social media 
      When I click the linkedin icon
      Then I wll be taken to the Swag linkedin
 
-    Scenario:
-      When I have an item in my basket
-      And I log out
-      And I log back in again
-      Then My cart will be the same as it was
+#    Scenario:
+#      When I have an item in my basket
+#      And I log out
+#      And I log back in again
+#      Then My cart will be the same as it was
