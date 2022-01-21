@@ -1,4 +1,7 @@
+@login @all
 Feature: As a user I want to be able to login
+  Background:
+    Given I am on the login page
 
   Scenario: Login with mouse after providing valid username and password
     Given I have a valid username and password
@@ -25,7 +28,7 @@ Feature: As a user I want to be able to login
   Scenario: Invalid username or password error
     Given that my username or password are invalid
     When I try to log in
-    Then an error should be displayed letting me know they are invalid
+    Then an error should be displayed letting me know the username or password are invalid
 
   Scenario: Missing username error
     Given I have a valid username and password
@@ -43,3 +46,9 @@ Feature: As a user I want to be able to login
     Given that I trigger an error message
     When I click the x on the error message
     Then the error message should go away
+
+  Scenario: User "Bernie" logs in
+    Given I log in with Bernie's username and password
+    When I type both in
+    And press login
+    Then an error should be displayed letting me know the username or password are invalid

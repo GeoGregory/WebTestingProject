@@ -4,8 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import test.java.org.framework.pom.Enums.SortOptions;
-import test.java.org.framework.pom.IndividualProduct;
-import test.java.org.framework.pom.PageWithHeaderAndFooter;
 
 import java.util.ArrayList;
 import java.util.List;
