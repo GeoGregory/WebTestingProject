@@ -6,6 +6,35 @@ Feature: As a user I want to be able to interact with the menu and social media 
 #      When I click on the burger menu
 #      Then The burger menu will display its elements
 
+    Scenario: Clicking on the all items link after opening the burger menu
+      Given I have opened the burger menu
+      When I click on the all items link
+      Then I will be taken to the all items page
+
+    Scenario: Clicking on the about link after opening the burger menu
+      Given I have opened the burger menu
+      When I click on the about link
+      Then I will be taken to the about page
+
+    Scenario: Clicking on the logout link after opening the burger menu
+      Given I have opened the burger menu
+      When I click on the logout link
+      Then I will be taken to the login page
+
+    Scenario: Trolley icon will reflect the number of items in the basket
+      When the basket has items
+      Then the trolley icon will display the number of items in the basket
+
+    Scenario: Adding a product to the cart with product(s) will increment the count
+      Given the basket has items
+      When I add a product to the cart
+      Then the trolley icon will increment
+
+    Scenario: Removing a product from the cart with product(s) will decrement the count
+      Given the basket has items
+      When I remove a product from the cart
+      Then the trolley icon will decrement
+
     Scenario: Clicking the twitter icon
       When I click the twitter icon
       Then I wll be taken to the Swag twitter
