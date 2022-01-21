@@ -13,11 +13,12 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class MyStepdefs {
+public class LoginStepDefs {
     private WebDriver driver;
     private LoginPage loginPage;
     private String username;
     private String password;
+    private long duration;
 
     @Before
     public void setup(){
@@ -99,6 +100,50 @@ public class MyStepdefs {
     @And("press enter")
     public void pressEnter() {
         loginPage.pressEnter();
+    }
+
+    @Given("I have a locked out username and password")
+    public void iHaveALockedOutUsernameAndPassword() {
+        username = UserOptions.LOCKED_OUT.getUserOption();
+        password = "secret_sauce";
+    }
+
+    @Then("an error should be displayed letting me know I am locked out")
+    public void anErrorShouldBeDisplayedLettingMeKnowIAmLockedOut() {
+        Assertions.assertEquals("Epic sadface: Sorry, this user has been locked out.", loginPage.getErrorMessage());
+    }
+
+    @When("I try to log in")
+    public void iTryToLogIn() {
+        iTypeBothIn();
+        pressEnter();
+    }
+
+    @Given("I have a performance glitched username and password")
+    public void iHaveAPerformanceGlitchedUsernameAndPassword() {
+        username = UserOptions.PERFORMANCE.getUserOption();
+        password = "secret_sauce";
+    }
+
+    @When("I time my log in")
+    public void iTimeMyLogIn() {
+        long startTime = System.nanoTime();
+        iTypeBothIn();
+        pressEnter();
+        long endTime = System.nanoTime();
+
+        duration = (endTime - startTime);
+    }
+
+    @Then("it should take longer than a normal login")
+    public void itShouldTakeLongerThanANormalLogin() {
+        long glitchedDuration = duration;
+        loginPage = new LoginPage(driver);
+        iHaveAValidUsernameAndPassword();
+        iTimeMyLogIn();
+        long standardDuration = duration;
+        long bufferTime = 1000000000L;
+        Assertions.assertEquals(true,glitchedDuration > (standardDuration + bufferTime));
     }
 }
 
