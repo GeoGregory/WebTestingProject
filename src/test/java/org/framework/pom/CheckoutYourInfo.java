@@ -3,7 +3,7 @@ package org.framework.pom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutYourInfo extends PageWithHeaderAndFooter{
+public class CheckoutYourInfo extends PageWithHeaderAndFooter {
 
     private final By cancelButton = new By.ById("cancel");
     private final By continueButton = new By.ById("continue");

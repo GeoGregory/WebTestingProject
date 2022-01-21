@@ -1,18 +1,22 @@
-package org.cucumber.stepDefs;
+package test.java.org.cucumber.stepDefs;
 
 import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
 import org.framework.pom.Enums.UserOptions;
 import org.framework.pom.LoginPage;
 import org.framework.pom.Products;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import test.java.org.framework.pom.LoginPage;
+import test.java.org.framework.pom.Products;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
