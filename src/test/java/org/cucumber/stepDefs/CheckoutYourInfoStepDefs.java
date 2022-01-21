@@ -20,7 +20,7 @@ public class CheckoutYourInfoStepDefs {
     private CheckoutYourInfo yourInfo;
     private CheckoutOverview overview;
 
-    @Given("I am logged in and on the checkout your info page")
+    @Given("I am logged in as a standard user and on the checkout your info page")
     public void iAmLoggedInAndOnTheCheckoutYourInfoPage() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
@@ -28,8 +28,19 @@ public class CheckoutYourInfoStepDefs {
         products = loginPage.quickLogin(UserOptions.STANDARD);
         cart = products.goToCart();
         yourInfo = cart.goToCheckout();
-
     }
+
+    @Given("I am logged in as a problem user and on the checkout your info page")
+    public void iAmLoggedInAsAProblemUserAndOnTheCheckoutYourInfoPage() {
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        driver = new ChromeDriver();
+        loginPage = new LoginPage(driver);
+        products = loginPage.quickLogin(UserOptions.PROBLEM);
+        cart = products.goToCart();
+        yourInfo = cart.goToCheckout();
+    }
+
+
 
     @And("I fill in all available text fields")
     public void iFillInAllAvailableTextFields() {
@@ -94,4 +105,6 @@ public class CheckoutYourInfoStepDefs {
     public void iShouldBeTakenToTheCartPage() {
         Assertions.assertEquals(cart.getURL(), "https://www.saucedemo.com/cart.html");
     }
+
+
 }

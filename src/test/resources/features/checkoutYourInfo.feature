@@ -1,7 +1,8 @@
+@yourInfo
 Feature: Checkout: Your Info page
 
   Background:
-    Given I am logged in and on the checkout your info page
+    Given I am logged in as a standard user and on the checkout your info page
 
   Scenario: Filling in all text fields
     And I fill in all available text fields
